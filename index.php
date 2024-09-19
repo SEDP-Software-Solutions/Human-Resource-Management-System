@@ -29,26 +29,18 @@ include('./Database/login.php');
     <link rel="stylesheet" href="./Assets/Css/login.css">
     <link rel="stylesheet" href="./Assets/Css/sweetAlert.css">
 </head>
-<<<<<<< HEAD
 
-    <body>
+<body>
     <div class="login-background">
-        <div class="header">
-            <?php include('./Scholar Page/Core/Includes/svg.php'); ?>
-            <ul>
-                <li><a href="./Scholar Page/App/ScholarshipCriteria.php">SCHOLARSHIP</a></li>
-                <li><a href="./JobPage/Jobpage.php">JOB</a></li>
-                <li><a href="#">ABOUT</a></li>
-            </ul>
-        </div>
 
         <body>
             <div class="login-background">
                 <div class="header">
                     <?php include('./Scholar Page/Core/Includes/svg.php'); ?>
                     <ul>
-                        <li><a href="./Assets/Php/apply.php">Apply</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="./Scholar Page/App/ScholarshipCriteria.php">SCHOLARSHIP</a></li>
+                        <li><a href="./JobPage/Jobpage.php">JOB</a></li>
+                        <li><a href="#">ABOUT</a></li>
                     </ul>
                 </div>
 

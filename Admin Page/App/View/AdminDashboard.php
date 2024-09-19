@@ -46,11 +46,11 @@ include('../../../Database/db.php');
             <div class="section">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 mb-3 overflow-hidden shadow-md" style="border-radius: 5px;">
+                        <div class="col-lg-6 col-md-6 col-sm-6 mb-3 overflow-hidden shadow " style="border-radius: 5px;">
                             <div id="donutchart" style="width: 680px; height: 360px;"></div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                            <div class="card border-0 shadow-sm">
+                            <div class="card border-0 shadow">
                                 <div class="card-body">
                                     <h5 class="card-title ms-2" style="font-weight: bold;">Upcoming Interview</h5>
                                     <ul class="list-group list-group-flush">
@@ -125,15 +125,9 @@ include('../../../Database/db.php');
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
             </div>
-
-
-
         </div>
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -146,16 +140,15 @@ include('../../../Database/db.php');
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
+                ['Job Applicants', 11],
+                ['Scholar Applicant', 9],
+                ['Interviews', 2],
+                ['Compliance', 2],
             ]);
 
             var options = {
-                title: 'My Daily Activities',
-                pieHole: 0.4,
+                title: 'Reports',
+                pieHole: 0.5,
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
