@@ -25,7 +25,7 @@ include('./Database/login.php');
     <!-- Favicon -->
     <link rel="shortcut icon" href="./Assets/Images/SEDPfavicon.png" type="image/x-icon">
 
-    <!-- Custom CSS -->
+    <!-- Custom CSS Style-->
     <link rel="stylesheet" href="./Assets/Css/login.css">
     <link rel="stylesheet" href="./Assets/Css/sweetAlert.css">
 </head>
