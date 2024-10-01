@@ -18,7 +18,7 @@ include('../../../Database/db.php');
         <div class="section">
             <div class="container-fluid">
 
-                <div class="row">
+                <div class="row mb-3">
                     <!--Employee Card-->
                     <?php
                     include('../Dashboard/EmployeeCard.php');

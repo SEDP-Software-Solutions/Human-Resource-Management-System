@@ -1,4 +1,4 @@
-<div class="container-fluid shadow-sm mb-4 bg-body-tertiary rounded fix-top">
+<div class="container-fluid shadow-sm mb-4 bg-body-tertiary rounded">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <a class="navbar-brand fs-4 fw-bold mx-2" href="#" style="color: #003c3c;">Simbag sa Pag-Asenso Inc.</a>
 
@@ -10,7 +10,7 @@
             </a>
 
             <!-- Calendar Layout -->
-            <div class="d-flex align-items-center shadow-sm" style="height: 45px; width: 190px; background-color: #fff; border-radius: 12px; padding-left: 6px;">
+            <div class="d-flex align-items-center shadow-sm" style="height: 45px; width: 200px; background-color: #fff; border-radius: 12px; padding-left: 6px;">
                 <i class="fas fa-calendar-alt me-2" style="font-size: 1.3rem; color: #003c3c;"></i> <!-- Calendar Icon -->
                 <span id="currentDate" class="fs-6 fw-bold" style="color: #003c3c;"></span> <!-- Date -->
             </div>

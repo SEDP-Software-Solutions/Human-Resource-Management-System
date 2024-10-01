@@ -9,11 +9,9 @@ $title = "";
 $JobDescription = "";
 $qualification = "";
 $location = "";
-$salary = "";
+$min_salary = "";
+$max_salary = "";
 $EmployeeType = "";
-
-$errorMessage = "";
-$successMessage = "";
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,20 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $JobDescription = $_POST['JobDescription'] ?? '';
     $qualification = $_POST['qualification'] ?? '';
     $location = $_POST['location'] ?? '';
-    $salary = $_POST['salary'] ?? '';
+    $min_salary = $_POST['min_salary'] ?? '';
+    $max_salary = $_POST['max_salary'] ?? '';
     $EmployeeType = $_POST['EmployeeType'] ?? '';
 
     // Validate required field
-    if (empty($title) || empty($JobDescription) || empty($qualification) || empty($location) || empty($salary) || empty($EmployeeType)) {
+    if (empty($title) || empty($JobDescription) || empty($qualification) || empty($location) || empty($min_salary) || empty($max_salary) || empty($EmployeeType)) {
         $errorMessage = "All fields are required";
     } else {
         // Insert into the database
-        $sql = "INSERT INTO job (title, JobDescription, qualification, location, salary, EmployeeType) 
-                VALUES ('$title', '$JobDescription', '$qualification', '$location', '$salary', '$EmployeeType')";
+        $sql = "INSERT INTO job (title, JobDescription, qualification, location, min_salary, max_salary, EmployeeType) 
+                VALUES ('$title', '$JobDescription', '$qualification', '$location', '$min_salary', '$max_salary', '$EmployeeType')";
 
         if (mysqli_query($connection, $sql)) {
             $successMessage = "New job added successfully!";
-            header("Location: ReqcruitmentPage.php");
+            header("Location: ReqcruitmentPage.php?msg=$successMessage");
             exit;
         } else {
             $errorMessage = "Error: " . mysqli_error($connection);
@@ -55,9 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Main Content -->
         <div class="container-fluid">
             <div class="d-flex justify-content-end mx-lg-5 gap-2">
-                <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#CreateJobPost">Post Job</button>
+                <button type="button" class="btn btn-md text-white" style="background-color: #003c3c;" data-bs-toggle="modal" data-bs-target="#CreateJobPost">Post Job</button>
                 <a href="../../../JobPage/Jobpage.php" class="btn btn-info">View</a>
             </div>
+            <!--Alert Message for error and successMessage-->
+            <?php
+            include('../../Core/Includes/alertMessages.php');
+            ?>
 
             <!-- Job Offers Section -->
             <section>
@@ -77,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         // Display each job
                         while ($row = $result->fetch_assoc()) {
-                            $modalId = "editJobPost" . $row['job_id'];
+                            $EditJobPost = "editJobPost" . $row['job_id'];
                             echo "
                                 <div class='col-lg-6'>
                                     <div class='card mb-3 shadow'>
@@ -87,20 +90,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <p class='card-text'><i class='bi bi-clipboard-check'></i> Qualification: {$row['qualification']}</p>
                                             <div class='d-flex justify-content-end mx-2 gap-2'>
                                                 <!-- Edit Button -->
-                                                <button type='button' class='btn btn-primary btn-sm' data-bs-toggle='modal' data-bs-target='#$modalId'>
+                                                <button type='button' class='btn btn-sm text-white' style='background-color: #003c3c;' data-bs-toggle='modal' data-bs-target='#$EditJobPost'>
                                                 <i class='bi bi-pencil-square'></i>
                                                 </button>
 
                                                 <!-- Edit Modal -->
-                                                <div class='modal fade' id='$modalId' tabindex='-1' aria-labelledby='editJobPostLabel' aria-hidden='true'>
+                                                <div class='modal fade' id='$EditJobPost' tabindex='-1' aria-labelledby='editJobPostLabel' aria-hidden='true'>
                                                     <div class='modal-dialog modal-dialog-centered'>
                                                         <div class='modal-content'>
                                                             <div class='modal-header'>
-                                                                <h1 class='modal-title fs-5' id='editJobPostLabel'>Edit Job</h1>
+                                                                 <h5 class='modal-title' id='editJobPostLabel'>Edit Job</h5>
                                                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                             </div>
                                                             <form method='POST' action='../Dao/Reqcruitement/EditJobPost.php'>
-                                                                <div class='modal-body'>
+                                                                <div class='modal-body'style='max-height: 500px; overflow-y: auto';>
                                                                     <input type='hidden' name='job_id' value='{$row['job_id']}'>
                                                                     <div class='form-group mb-3'>
                                                                         <label class='col-form-label'>Job Title</label>
@@ -112,24 +115,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                                     </div>
                                                                     <div class='form-group mb-3'>
                                                                         <label class='col-form-label'>Qualification</label>
-                                                                        <input type='text' class='form-control' name='qualification' value='{$row['qualification']}'>
+                                                                        <textarea class='form-control' name='qualification'>{$row['qualification']}</textarea>
                                                                     </div>
+
                                                                     <div class='form-group mb-3'>
                                                                         <label class='col-form-label'>Location</label>
                                                                         <input type='text' class='form-control' name='location' value='{$row['location']}'>
                                                                     </div>
+                                                                    <!-- Salary Range Inputs (Min and Max Salary) -->
                                                                     <div class='form-group mb-3'>
-                                                                        <label class='col-form-label'>Salary</label>
-                                                                        <input type='text' class='form-control' name='salary' value='{$row['salary']}'>
+                                                                        <label class='col-form-label'>Salary Range</label>
+                                                                        <div class='d-flex align-items-center'>
+                                                                            <input required type='number' class='form-control' name='min_salary' placeholder='Min' value='{$row['min_salary']}' min='0' max='500000'>
+                                                                            <span class='mx-2'>-</span>
+                                                                            <input required type='number' class='form-control' name='max_salary' placeholder='Max' value='{$row['max_salary']}' min='0' max='500000'>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class='form-group mb-4'>
-                                                                        <label class='col-form-label'>Employee Type</label>
-                                                                        <select class='form-select' name='EmployeeType'>
-                                                                            <option value='PartTime'>Part-time</option>
-                                                                            <option value='FullTime'>Full-time</option>
-                                                                            <option value='freelance'>Freelance</option>
-                                                                        </select>
-                                                                    </div>
+                                                                <!-- Employee Type Dropdown (with no default selection) -->
+                                                                <div class='form-group mb-3'>
+                                                                    <label for='employeeType' class='col-form-label'>Employee Type</label>
+                                                                    <select required class='form-select' id='employeeType' name='EmployeeType'>
+                                                                        <option value='' disabled selected>Select Type</option> <!-- No pre-selected value -->
+                                                                        <option value='PartTime' <?php echo ($EmployeeType == 'PartTime') ? 'selected' : ''; ?>Part-time</option>
+                                                                        <option value='FullTime' <?php echo ($EmployeeType == 'FullTime') ? 'selected' : ''; ?>Full-time</option>
+                                                                        <option value='Freelance' <?php echo ($EmployeeType == 'Freelance') ? 'selected' : ''; ?>Freelance</option>
+                                                                    </select>
+                                                                </div>
                                                                 </div>
                                                                 <div class='modal-footer'>
                                                                     <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Cancel</button>

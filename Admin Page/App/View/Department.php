@@ -1,91 +1,78 @@
 <?php
 //connection
-$title = 'Dashboard';
+$title = 'Department | SEDP HRMS';
 $page = 'Department';
 
 include("../../../Database/db.php");
+include('../../Core/Includes/header.php');
 
 $name = "";
 $location = "";
 
-$errorMessage = "";
-$successMessage = "";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="wrapper">
+    <!--sidebar-->
+    <?php
+    include_once('../../core/includes/sidebar.php');
+    ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Branch Page</title>
-
-    <link rel="stylesheet" href="../../public/assets/css/AdminStyle.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap CSS -->
-</head>
-
-<body>
-    <div class="wrapper">
-        <!--sidebar-->
+    <!--add employee-->
+    <main class="main">
+        <!--header-->
         <?php
-        include_once('../../core/includes/sidebar.php');
+        include '../../core/includes/navBar.php';
         ?>
 
-        <!--add employee-->
-        <main class="main">
-            <!--header-->
+        <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4" my-4>
+            <!--Alert Message for error and successMessage-->
             <?php
-            include '../../core/includes/navBar.php';
+            include('../../Core/Includes/alertMessages.php');
             ?>
-
-            <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4" my-4>
-                <br>
-                <h3>List Of Departments</h3>
-                <hr>
-                <div class="row">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end px-6">
-                        <form action="../Departments/SearchDepartment.php" method="GET">
-                            <div class="input-group mb-2">
-                                <input type="text" name="search" value="" class="form-control" placeholder="Search Department">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                            </div>
-                        </form>
-                        <div class="ms-auto me-3">
-                            <button type='button' class='btn btn-primary btn-md' data-bs-toggle='modal' data-bs-target='#CreateDepartment'>
-                                Create Department
-                            </button>
+            <h3>List Of Departments</h3>
+            <hr>
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end px-6">
+                    <form action="../Departments/SearchDepartment.php" method="GET">
+                        <div class="input-group mb-2">
+                            <input type="text" name="search" value="" class="form-control" placeholder="Search Department">
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </div>
+                    </form>
+                    <div class="ms-auto me-3">
+                        <button type='button' class='btn btn-primary btn-md' data-bs-toggle='modal' data-bs-target='#CreateDepartment'>
+                            Create Department
+                        </button>
                     </div>
                 </div>
-                <br>
-                <table class="table table-striped">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>#</th>
-                            <th>DEPARTMENT NAME</th>
-                            <th>CREATED DATE</th>
-                            <th>OPERATIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //connection
-                        include("../../../Database/db.php");
-                        //read all row from database table
-                        $sql = "SELECT * FROM departments";
-                        $result = $connection->query($sql);
+            </div>
+            <br>
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>DEPARTMENT NAME</th>
+                        <th>CREATED DATE</th>
+                        <th>OPERATIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    //connection
+                    include("../../../Database/db.php");
+                    //read all row from database table
+                    $sql = "SELECT * FROM departments";
+                    $result = $connection->query($sql);
 
-                        if (!$result) {
-                            die("Invalid Query" . $connection->error);
-                        }
-                        //read data of each row
-                        while ($row = $result->fetch_assoc()) {
-                            // create a unique modal ID for each employee
-                            $modalId = "editDepartmentModal" . $row['department_id'];
+                    if (!$result) {
+                        die("Invalid Query" . $connection->error);
+                    }
+                    //read data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        // create a unique modal ID for each employee
+                        $modalId = "editDepartmentModal" . $row['department_id'];
 
-                            echo "
+                        echo "
                         <tr>
                             <td>$row[department_id]</td>
                             <td>$row[name]</td>
@@ -101,7 +88,7 @@ $successMessage = "";
                                         <div class='modal-dialog modal-dialog-centered'>
                                             <div class='modal-content'>
                                                 <div class='modal-header'>
-                                                    <h5 class='modal-title' id='editDepartmentLabel'>Edit Department</h5>
+                                                    <h5 class='modal-title fw-bold fs-5' id='editDepartmentLabel'>Edit Department ?</h5>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                 </div>
                                                 <form action='../Departments/EditDepartment.php' method='POST'>
@@ -114,7 +101,7 @@ $successMessage = "";
                                                         </div>
                                                     </div>
                                                     <div class='modal-footer'>
-                                                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                                        <button type='button' class='btn btn-outline-secondary' data-bs-dismiss='modal'>Close</button>
                                                         <button type='submit' class='btn btn-primary'>Save Changes</button>
                                                     </div>
                                                 </form>
@@ -130,23 +117,23 @@ $successMessage = "";
                                 </td>
                             </tr>
                             ";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
-    <!-- Modal Add Employee-->
-    <?php
-    include("../../App/Departments/CreateDepartment.php");
-    include("../../App/Departments/DeleteDepartment.php");
-    ?>
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<!-- Modal Add Employee-->
+<?php
+include("../../App/Departments/CreateDepartment.php");
+include("../../App/Departments/DeleteDepartment.php");
+?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-    <script src="../../Public/Assets/Js/AdminPage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+<script src="../../Public/Assets/Js/AdminPage.js"></script>
 </body>
 
 </html>

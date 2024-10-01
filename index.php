@@ -43,7 +43,6 @@ include('./Database/login.php');
                         <li><a href="#">ABOUT</a></li>
                     </ul>
                 </div>
-
                 <div class="container-fluid mt-4" style="background: transparent;">
                     <div class="row align-items-center">
                         <div class="col-md-6 text-center title-container">

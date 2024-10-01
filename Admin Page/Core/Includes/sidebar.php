@@ -35,8 +35,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 300px;
-            text-align: center;
+            width: 600px;
         }
 
         .modal-content h5 {
@@ -45,6 +44,7 @@
 
         .modal-content button {
             margin: 10px 0;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -73,13 +73,13 @@
                 <li class="sidebar-item">
                     <a href="../../App/View/Employee.php" class="sidebar-link">
                         <i class="lni lni-users"></i>
-                        <span>Employee's</span>
+                        <span>Employees</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="../../App/View/JobApplicants.php" class="sidebar-link">
                         <i class="lni lni-search"></i>
-                        <span>Job Applicants</span>
+                        <span>Job Applicant</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -89,8 +89,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="../../App/View/ReqcruitmentPage.php" class="sidebar-link">
-                        <i class="bi bi-person-fill-dash"></i>
+                    <a href="../../App/View/pastMember.php" class="sidebar-link">
+                        <i class="bi bi-person-lock"></i>
                         <span>Past Member</span>
                     </a>
                 </li>
@@ -102,10 +102,10 @@
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="../../App/View/Branch.php" class="sidebar-link">Branch</a>
+                            <a href="../../App/View/Branch.php" class="sidebar-link mx-4">Branch</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="../../App/View/Department.php" class="sidebar-link">Department</a>
+                            <a href="../../App/View/Department.php" class="sidebar-link mx-4">Department</a>
                         </li>
                     </ul>
                 </li>
@@ -120,16 +120,16 @@
                     </a>
                     <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="../../App/View/recipients.php" class="sidebar-link">Scholars</a>
+                            <a href="../../App/View/recipients.php" class="sidebar-link mx-4">Scholars</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="../../App/View/Program.php" class="sidebar-link">Programs</a>
+                            <a href="../../App/View/Program.php" class="sidebar-link mx-4">Programs</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="../../App/View/Compliance.php" class="sidebar-link">Compliance</a>
+                            <a href="../../App/View/Compliance.php" class="sidebar-link mx-4">Compliance</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Requests</a>
+                            <a href="#" class="sidebar-link mx-4">Requests</a>
                         </li>
                     </ul>
                 </li>
@@ -147,7 +147,7 @@
         <div class="modal-content">
             <h5>Are you sure you want to logout?</h5>
             <button class="btn btn-secondary" onclick="hideModal()">Cancel</button>
-            <a href="../../../index.php" class="btn btn-primary" id="confirmLogout">Logout</a>
+            <a href="../../../index.php" class="btn btn-primary" id=" confirmLogout">Logout</a>
         </div>
     </div>
 

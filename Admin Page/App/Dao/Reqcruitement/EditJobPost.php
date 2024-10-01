@@ -6,12 +6,10 @@ $title = "";
 $JobDescription = "";
 $qualification = "";
 $location = "";
-$salary = "";
+$min_salary = "";
+$max_salary = "";
 $EmployeeType = "";
 
-
-$errorMessage = "";
-$successMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_GET["job_id"])) {
@@ -35,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $JobDescription = $row["JobDescription"];
     $qualification = $row["qualification"];
     $location = $row["location"];
-    $salary = $row["salary"];
+    $min_salary = $row["min_salary"];
+    $max_salary = $row["max_salary"];
     $EmployeeType = $row["EmployeeType"];
 } else {
     //Update the data go the job
@@ -44,15 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $JobDescription = $_POST['JobDescription'];
     $qualification = $_POST['qualification'];
     $location = $_POST['location'];
-    $salary = $_POST['salary'];
+    $min_salary = $_POST['min_salary'];
+    $max_salary = $_POST['max_salary'];
     $EmployeeType = $_POST['EmployeeType'];
 
     do {
-        if (empty($job_id) || empty($title) || empty($JobDescription) || empty($qualification) || empty($location) || empty($salary) || empty($EmployeeType)) {
+        if (empty($job_id) || empty($title) || empty($JobDescription) || empty($qualification) || empty($location) || empty($min_salary) || empty($max_salary) || empty($EmployeeType)) {
             $errorMessage = "all the field are required";
             break;
         }
-        $sql = "UPDATE job SET title = '$title', JobDescription = '$JobDescription', qualification = '$qualification', location = '$location', salary = '$salary', EmployeeType = '$EmployeeType'" .
+        $sql = "UPDATE job SET title = '$title', JobDescription = '$JobDescription', qualification = '$qualification', location = '$location', min_salary = '$min_salary', max_salary = '$max_salary', EmployeeType = '$EmployeeType'" .
             "WHERE job_id = $job_id";
 
         $result = $connection->query($sql);
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $successMessage = "job Updated Succefuly!";
 
-        header("location:../../View/ReqcruitmentPage.php");
+        header("location:../../View/ReqcruitmentPage.php?msg=$successMessage");
         exit;
     } while (false);
 }

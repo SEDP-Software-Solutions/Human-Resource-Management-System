@@ -8,10 +8,8 @@ $email = "";
 $ContactNumber = "";
 $department = "";
 $password = "";
-$cpassword = "";
-
-$errorMessage = "";
-$successMessage = "";
+$confirm_password = "";
+$usertype = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -19,23 +17,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ContactNumber = $_POST['ContactNumber'];
     $department = $_POST['department'];
     $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
+    $confirm_password = $_POST['confirm_password'];
+    $usertype = $_POST['usertype'];
 
     // Check if email already exists
     $check_email = mysqli_query($connection, "SELECT * FROM employees WHERE email ='$email'");
     if (mysqli_num_rows($check_email) > 0) {
-        $errorMessage = "The Email already exists!";
+        header("Location: ../../View/Employee.php?error_msg=The email you entered already exists. Please use a different email.");
+        exit;
     } else {
         // Validation of form fields
-        if (empty($username) || empty($email) || empty($ContactNumber) || empty($department) || empty($password) || empty($cpassword)) {
-            $errorMessage = "All fields are required";
-        } elseif ($password != $cpassword) {
-            $error[] = 'Passwords do not match!';
-            $errorMessage = "d";
+        if (empty($username) || empty($email) || empty($ContactNumber) || empty($department) || empty($password) || empty($confirm_password)) {
+        } elseif ($password != $confirm_password) {
+            header("Location: ../../View/Employee.php?error_msg=Passwords do not match. Please ensure both password fields are identical.");
+            exit;
         } else {
             // Prepare SQL query with prepared statements to avoid SQL injection
-            $stmt = $connection->prepare("INSERT INTO employees (username, email, ContactNumber, department, password) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $username, $email, $ContactNumber, $department, $password);
+            $stmt = $connection->prepare("INSERT INTO employees (username, email, ContactNumber, department, password,usertype) VALUES (?, ?, ?, ?, ?,?)");
+            $stmt->bind_param("ssssss", $username, $email, $ContactNumber, $department, $password, $usertype);
 
             if ($stmt->execute()) {
                 // Reset form values after successful submission
@@ -44,12 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $ContactNumber = "";
                 $department = "";
                 $password = "";
-                $cpassword = "";
-
-                $successMessage = "New Employee added successfully!";
+                $confirm_password = "";
 
                 // Redirect after successful form submission
-                header("Location: ../../View/Employee.php");
+                header("Location: ../../View/Employee.php?msg=New Employee Added Successfully");
                 exit;
             } else {
                 $errorMessage = "Invalid query: " . $connection->error;

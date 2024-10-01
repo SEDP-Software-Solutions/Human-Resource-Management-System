@@ -25,18 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Step 4: Reset the AUTO_INCREMENT value
             $sql_reset_ai = "ALTER TABLE departments AUTO_INCREMENT = 1";
             $connection->query($sql_reset_ai);
-
-            // Optional: Add a success message
-            $successMessage = "department deleted and IDs renumbered successfully.";
         } else {
-            $errorMessage = "Failed to delete the department.";
+            header("location:../../View/Department.php?error_msg=Failed to delete Department!");
         }
 
         $stmt->close();
         $connection->close();
 
         // Redirect back to department.php
-        header("location:../../View/Department.php");
+        header("location:../../View/Department.php?msg=Department deleted successfully!");
         exit;
     }
 }

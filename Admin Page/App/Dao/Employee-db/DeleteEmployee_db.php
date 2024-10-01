@@ -23,17 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Step 3: Reset AUTO_INCREMENT to the correct value
             $sql_reset_ai = "ALTER TABLE employees AUTO_INCREMENT = 1";
             $connection->query($sql_reset_ai);
-
-            $successMessage = "Employee deleted and IDs reordered successfully!";
         } else {
-            $errorMessage = "Failed to delete the employee.";
+            header("location:../../View/Employee.php?failed_msg=Failed to delete the employee.");
+            exit;
         }
 
         $stmt->close();
         $connection->close();
 
         // Redirect back to the employee page
-        header("location:../../View/Employee.php");
+        header("location:../../View/Employee.php?msg=Employee data deleted successfully!");
         exit;
     }
 }

@@ -35,17 +35,23 @@ include("../../../Database/db.php");
             ?>
 
             <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4" my-4>
-                <br>
-                <h3 class="fw-normal">List Of Recipients</h3>
+                <!--Alert Message for error and successMessage-->
+                <?php
+                include('../../Core/Includes/alertMessages.php');
+                ?>
+                <h3>List Of Recipient</h3>
                 <hr>
                 <div class="row">
-                    <div class=" col-4 ms-auto me-3">
-                        <form action="SearchBranch.php" method="GET">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end px-6">
+                        <form action="#" method="GET">
                             <div class="input-group mb-2">
-                                <input type="text" name="search" value="" class="form-control" placeholder="Search Branch">
+                                <input type="text" name="search" value="" class="form-control" placeholder="Search Recipient">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                         </form>
+                        <div class="ms-auto me-3">
+                            <a href="../View/recipients.php" class="btn btn-dark btn-md">Back</a>
+                        </div>
                     </div>
                 </div>
                 <br>
