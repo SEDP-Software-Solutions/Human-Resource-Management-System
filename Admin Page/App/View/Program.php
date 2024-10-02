@@ -1,5 +1,5 @@
 <?php
-$title = 'Scholar Program';
+$title = 'Scholar Program | SEDP HRMS';
 $page = 'scholar program';
 
 include('../../Core/Includes/header.php');
@@ -31,7 +31,7 @@ include('../../Core/Includes/header.php');
                                             <h5 class="card-title fw-bold">College/Tertiary Scholarhip</h5>
                                             <p class="card-text">Financial aid to students pursuing higher education, covering tuition and other expenses, supporting academic achievement and career development.</p>
                                             <div class="card-body">
-                                                <a href="../Program/College.php" class="btn btn-primary ">View</a>
+                                                <a href="../Program/College.php" class="btn text-white" style="background-color: #003c3c;">View</a>
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +49,7 @@ include('../../Core/Includes/header.php');
                                             <h5 class="card-title fw-bold">Primary Education Scholarship</h5>
                                             <p class="card-text">Offer financial support for young students, covering tuition and essentials, ensuring access to quality education and equal opportunities.</p>
                                             <div class="card-body">
-                                                <a href="#" class="btn btn-primary ">Comming soon..</a>
+                                                <a href="#" class="btn text-white" color: style="background-color: #003c3c;">Comming soon..</a>
                                             </div>
                                         </div>
                                     </div>

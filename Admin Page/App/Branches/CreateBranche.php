@@ -13,26 +13,26 @@
                         <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
                     </div>
                     <div class="form-group mb-2">
-                        <label class="col-form-label">Location</label>
-                        <input type="text" class="form-control" name="location" value="<?php echo htmlspecialchars($location); ?>" required>
+                        <label class="col col-form-label">Location</label>
+                        <select class="form-select" name="location" required>
+                            <option value="">Select</option>
+                            <?php
+                            $sql = "SELECT * FROM branches";
+                            $result = $connection->query($sql);
+
+                            if (!$result) {
+                                die("Invalid Query: " . $connection->error);
+                            }
+                            while ($row = $result->fetch_assoc()) {
+                                $selected = ($branch == $row['name']) ? 'selected' : '';
+                                echo "<option value='{$row['name']}' $selected>{$row['name']}</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
-
-                    <!-- Error messages -->
-                    <?php if (!empty($errorMessage)) { ?>
-                        <div class='alert alert-danger'>
-                            <strong><?php echo htmlspecialchars($errorMessage); ?></strong>
-                        </div>
-                    <?php } ?>
-
-                    <!-- Success message -->
-                    <?php if (!empty($successMessage)) { ?>
-                        <div class='alert alert-success'>
-                            <strong><?php echo htmlspecialchars($successMessage); ?></strong>
-                        </div>
-                    <?php } ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>

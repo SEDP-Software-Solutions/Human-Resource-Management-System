@@ -18,9 +18,9 @@
                 echo '<p class="card-text fw-bold fs-1 mx-3">' . $scholarApplicant_count . '</p>';
                 ?>
             </div>
-            <i class="bi bi-person-lines-fill"></i>
+            <i class="bi bi-mortarboard-fill"></i>
 
         </div>
-        <a href="./JobApplicants.php" class="card-link m-2 text-end mt-0">view</a>
+        <a href="../View/ScholarApplicant.php" class="card-link m-3 text-end mt-0 text-primary">view</a>
     </div>
 </div>

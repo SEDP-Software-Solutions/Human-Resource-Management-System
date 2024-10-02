@@ -11,19 +11,9 @@
                         <label class="col col-form-label">Name of Department</label>
                         <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
                     </div>
-                    <?php if (!empty($errorMessage)) { ?>
-                        <div class='alert alert-danger'>
-                            <strong><?php echo htmlspecialchars($errorMessage); ?></strong>
-                        </div>
-                    <?php } ?>
-                    <?php if (!empty($successMessage)) { ?>
-                        <div class='alert alert-success'>
-                            <strong><?php echo htmlspecialchars($successMessage); ?></strong>
-                        </div>
-                    <?php } ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </form>

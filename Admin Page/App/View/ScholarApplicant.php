@@ -1,9 +1,10 @@
 <?php
 //connection
-$title = 'Dashboard';
+$title = 'Scholar Applicant | SEDP HRMS ';
 $page = 'Recipient';
 
 include("../../../Database/db.php");
+include('../../Core/Includes/header.php');
 
 $name = "";
 $email = "";
@@ -15,79 +16,64 @@ $errorMessage = "";
 $successMessage = "";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="wrapper">
+    <!--sidebar-->
+    <?php
+    include_once('../../core/includes/sidebar.php');
+    ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Branch Page</title>
-
-    <link rel="stylesheet" href="../../public/assets/css/AdminStyle.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap CSS -->
-</head>
-
-<body>
-    <div class="wrapper">
-        <!--sidebar-->
+    <!--add employee-->
+    <main class="main">
+        <!--header-->
         <?php
-        include_once('../../core/includes/sidebar.php');
+        include '../../core/includes/navBar.php';
         ?>
 
-        <!--add employee-->
-        <main class="main">
-            <!--header-->
-            <?php
-            include '../../core/includes/navBar.php';
-            ?>
-
-            <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4" my-4>
-                <br>
-                <h3 class="fw-bold">List Of Scholar Applicants</h3>
-                <hr>
-                <div class="row">
-                    <div class="col-4 ms-auto  me-4">
-                        <form action="../ScholarApplicant/SearchScholarApplicant.php" method="GET">
-                            <div class="input-group mb-2">
-                                <input type="text" name="search" value="" class="form-control" placeholder="Search Recipient">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                            </div>
-                        </form>
-                    </div>
+        <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4" my-4>
+            <br>
+            <h3 class="fw-bold">List Of Scholar Applicants</h3>
+            <hr>
+            <div class="row">
+                <div class="col-4 ms-auto  me-4">
+                    <form action="../ScholarApplicant/SearchScholarApplicant.php" method="GET">
+                        <div class="input-group mb-2">
+                            <input type="text" name="search" value="" class="form-control" placeholder="Search Recipient">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
                 </div>
-                <br>
-                <table class="table table-striped">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>#</th>
-                            <th>NAME</th>
-                            <th>EMAIL</th>
-                            <th>SCHOOL</th>
-                            <th>CONTACT</th>
-                            <th>GRADE LEVEL</th>
-                            <th>ADMISSION DATE</th>
-                            <th>OPERATIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //connection
-                        include("../../../Database/db.php");
-                        //read all row from database table
-                        $sql = "SELECT * FROM scholar_applicant ";
-                        $result = $connection->query($sql);
+            </div>
+            <br>
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>SCHOOL</th>
+                        <th>CONTACT</th>
+                        <th>GRADE LEVEL</th>
+                        <th>ADMISSION DATE</th>
+                        <th>OPERATIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    //connection
+                    include("../../../Database/db.php");
+                    //read all row from database table
+                    $sql = "SELECT * FROM scholar_applicant ";
+                    $result = $connection->query($sql);
 
-                        if (!$result) {
-                            die("Invalid Query" . $connection->error);
-                        }
-                        //read data of each row
-                        while ($row = $result->fetch_assoc()) {
-                            // create a unique modal ID for each employee
-                            $modalId = "editScholarApplicant" . $row['scholar_id'];
+                    if (!$result) {
+                        die("Invalid Query" . $connection->error);
+                    }
+                    //read data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        // create a unique modal ID for each employee
+                        $modalId = "editScholarApplicant" . $row['scholar_id'];
 
-                            echo "
+                        echo "
                         <tr>
                             <td>$row[scholar_id]</td>
                             <td>$row[name]</td>
@@ -133,19 +119,19 @@ $successMessage = "";
                                                         <select class='form-select' name='GradeLevel' required>
                                                             <option value=''>Select</option>";
 
-                            // Fetch grade levels
-                            $gradeLevelQuery = 'SELECT * FROM grade_level';
-                            $gradeResult = $connection->query($gradeLevelQuery);
+                        // Fetch grade levels
+                        $gradeLevelQuery = 'SELECT * FROM grade_level';
+                        $gradeResult = $connection->query($gradeLevelQuery);
 
-                            if (!$gradeResult) {
-                                die('Invalid Query: ' . $connection->error);
-                            }
-                            while ($gradeRow = $gradeResult->fetch_assoc()) {
-                                $selected = ($row['GradeLevel'] == $gradeRow['name']) ? 'selected' : '';
-                                echo "<option value='" . htmlspecialchars($gradeRow['name']) . "' $selected>" . htmlspecialchars($gradeRow['name']) . "</option>";
-                            }
+                        if (!$gradeResult) {
+                            die('Invalid Query: ' . $connection->error);
+                        }
+                        while ($gradeRow = $gradeResult->fetch_assoc()) {
+                            $selected = ($row['GradeLevel'] == $gradeRow['name']) ? 'selected' : '';
+                            echo "<option value='" . htmlspecialchars($gradeRow['name']) . "' $selected>" . htmlspecialchars($gradeRow['name']) . "</option>";
+                        }
 
-                            echo "
+                        echo "
                                                 </select>
                                                     </div>
                                                 </div>
@@ -165,22 +151,22 @@ $successMessage = "";
                                     </button>
                             </td>
                         </tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
-    <!-- Modal Add Employee-->
-    <?php
-    include("../../App/ScholarApplicant/DeleteScholarApplicant.php");
-    ?>
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<!-- Modal Add Employee-->
+<?php
+include("../../App/ScholarApplicant/DeleteScholarApplicant.php");
+?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-    <script src="../../Public/Assets/Js/AdminPage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+<script src="../../Public/Assets/Js/AdminPage.js"></script>
 </body>
 
 </html>

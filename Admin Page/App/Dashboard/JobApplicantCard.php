@@ -22,6 +22,6 @@
             <i class="bi bi-person-lines-fill"></i>
 
         </div>
-        <a href="../View/JobApplicants.php" class="card-link m-2 text-end mt-0">view</a>
+        <a href="../View/JobApplicants.php" class="card-link m-3 text-end mt-0 text-primary">view</a>
     </div>
 </div>

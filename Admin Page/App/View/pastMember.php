@@ -25,13 +25,33 @@ $successMessage = "";
         <?php
         include '../../core/includes/navBar.php';
         ?>
-
+        <?php
+        if (!empty($errorMessage)) {
+            echo "
+                    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    <strong>$errorMessage</strong>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+                    </div>
+                    ";
+        }
+        ?>
+        <?php
+        if (!empty($successMessage)) {
+            echo "
+                    <div class='row mb-3'>
+                        <div class='offset-sm-2 col-sm-6'>
+                            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                <strong>$successMessage</strong>
+                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+                            </div>
+                        </div>
+                    </div>  
+                ";
+        }
+        ?>
 
         <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4" my-4>
-            <!--Alert Message for error and successMessage-->
-            <?php
-            include('../../Core/Includes/alertMessages.php');
-            ?>
+            <br>
             <h3>List Of Branches</h3>
             <hr>
             <div class="row">

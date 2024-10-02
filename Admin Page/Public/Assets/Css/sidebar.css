@@ -112,8 +112,9 @@ a.sidebar-link:hover {
     position: relative;
 }
 .sidebar-link p{
-    color: #122367;
+    color:  rgb(255, 255, 255);
     font-size: 0.9rem;
+    font-weight: 700;
     margin-left: 15px;
     padding-top: 10px;
 

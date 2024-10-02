@@ -11,6 +11,9 @@ $ContactNumber = "";
 $department = "";
 $password = "";
 
+$errorMessage = "";
+$successMessage = "";
+
 // Handle department filter
 $selectedDepartment = isset($_GET['department']) ? $_GET['department'] : '';
 
@@ -53,7 +56,7 @@ $selectedDepartment = isset($_GET['department']) ? $_GET['department'] : '';
                                 <option value="" disabled <?php echo empty($selectedDepartment) ? 'selected' : ''; ?>>Select Department</option>
                                 <?php
                                 // Fetch departments and order them alphabetically
-                                $sql = "SELECT * FROM departments ORDER BY name ASC ";
+                                $sql = "SELECT * FROM departments ORDER BY name ASC";
                                 $result = $connection->query($sql);
 
                                 if (!$result) {
@@ -102,7 +105,7 @@ $selectedDepartment = isset($_GET['department']) ? $_GET['department'] : '';
                     <tbody>
                         <?php
                         // Filter employees based on the selected department
-                        $sql = "SELECT * FROM employees LIMIT 5" . ($selectedDepartment ? " WHERE department='$selectedDepartment'" : "");
+                        $sql = "SELECT * FROM employees" . ($selectedDepartment ? " WHERE department='$selectedDepartment'" : "");
                         $result = $connection->query($sql);
 
                         if (!$result) {
@@ -127,10 +130,6 @@ $selectedDepartment = isset($_GET['department']) ? $_GET['department'] : '';
                                 <td>
                                     <button type='button' class='btn btn-primary btn-sm' data-bs-toggle='modal' data-bs-target='#$modalId'>
                                         <i class='bi bi-pencil-square'></i>
-                                    </button>
-                                        <button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' 
-                                        data-bs-target='#DeleteEmployee' onclick='setEmployeeIdForDelete({$row['employee_id']})'>
-                                        <i class='bi bi-trash'></i>
                                     </button>
                         
                                     <div class='modal fade' id='$modalId' tabindex='-1' aria-labelledby='editEmployeeLabel' aria-hidden='true'>
@@ -200,6 +199,10 @@ $selectedDepartment = isset($_GET['department']) ? $_GET['department'] : '';
                                         </div>
                                     </div>
                                 </td>
+                                    <button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' 
+                                        data-bs-target='#DeleteEmployee' onclick='setEmployeeIdForDelete({$row['employee_id']})'>
+                                        <i class='bi bi-trash'></i>
+                                    </button>
                             </tr>";
                         }
                         ?>

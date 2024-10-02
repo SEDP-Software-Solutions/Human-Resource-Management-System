@@ -1,6 +1,6 @@
 <?php
-$title = 'Branch';
-$page = 'Branch';
+$title = 'Scholar Compliance | SEDP HRMS';
+$page = 'scholar compliance';
 
 include('../../Core/Includes/header.php');
 ?>
@@ -13,7 +13,6 @@ include('../../Core/Includes/header.php');
         <?php
         include('../../Core/Includes/navBar.php');
         ?>
-
         <div class="container-fluid shadow p-3 mb-5 bg-body-tertiary rounded-4">
             <h3 class="fw-bold fs-3">Compliances</h3>
             <hr style="padding-bottom: 1.5rem;">
@@ -31,7 +30,7 @@ include('../../Core/Includes/header.php');
                                             <h5 class="card-title fw-bold">Narrative Report</h5>
                                             <p class="card-text">A detailed, chronological account of events or experiences, used to document progress, activities, or findings.</p>
                                             <div class="card-body">
-                                                <a href="#" class="btn btn-primary ">View more</a>
+                                                <a href="../Compliances/NarativeReport.php" class="btn btn-primary ">View more</a>
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +135,6 @@ include('../../Core/Includes/header.php');
             <br>
 
         </div>
-
         <?php
         include('../../../Assets/Js/bootstrap.js')
         ?>
