@@ -65,10 +65,10 @@
             </ul>
             <div class="profile">
                 <a href="../../App/View/notification.php"><i class="fa-solid fa-bell"></i></a>
-                <img src="../../Public/Assets/Images/SEDPLogo.png" alt="Profile" id="profile-img">
+                <img src="../../Public/Assets/Images/profile.jpg" alt="Profile" id="profile-img">
                 <i class="fa-solid fa-angle-down" id="dropdown-toggle"></i>
                 <div class="dropdown-menu" id="dropdown-menu">
-                    <a href="#"><i class="fa-solid fa-user"></i>&nbsp;Profile</a>
+                    <a href="../../App/View/scholar_profile.php"><i class="fa-solid fa-user"></i>&nbsp;Profile</a>
                     <a href="#"><i class="fa-solid fa-gear"></i>&nbsp;Settings</a>
                     <a href="../../../Assets/logout.php"><i class="fa-solid fa-sign-out-alt"></i>&nbsp;Logout</a>
                 </div>
