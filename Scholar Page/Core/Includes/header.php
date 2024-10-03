@@ -13,6 +13,9 @@
     <link rel="shortcut icon" href="../../Public/Assets/Images/SEDPfavicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../../Public/Assets/Css/header.css">
     <link rel="stylesheet" href="../../Public/Assets/Css/dashboard.css">
+    <link rel="stylesheet" href="../../Public/Assets/Css/scholar_home.css">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -34,8 +37,18 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <head>
+    <!-- Other head elements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Calendar cdn-->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -65,8 +78,13 @@
             </ul>
             <div class="profile">
                 <a href="../../App/View/notification.php"><i class="fa-solid fa-bell"></i></a>
+<<<<<<< HEAD
                 <img src="../../Public/Assets/Images/profile.jpg" alt="Profile" id="profile-img">
                 <i class="fa-solid fa-angle-down" id="dropdown-toggle"></i>
+=======
+                <img src="../../Public/Assets/Images/SEDPLogo.png" alt="Profile" id="profile-img">
+                <i class="fa-solid fa-angle-down" id="dropdown-toggle" style="color: #fff;"></i>
+>>>>>>> 42d5dff79f9647c70db4ffe202ece95fa0a95ce2
                 <div class="dropdown-menu" id="dropdown-menu">
                     <a href="../../App/View/scholar_profile.php"><i class="fa-solid fa-user"></i>&nbsp;Profile</a>
                     <a href="#"><i class="fa-solid fa-gear"></i>&nbsp;Settings</a>
