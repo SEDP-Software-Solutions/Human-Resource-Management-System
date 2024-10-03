@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+=======
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 body {
     background-color: #f8f9fa;
     font-family: 'Roboto', sans-serif;
@@ -18,22 +24,39 @@ body {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+<<<<<<< HEAD
 span{
     font-family: 'Roboto', sans-serif;
 }
+=======
+
+span {
+    font-family: 'Roboto', sans-serif;
+}
+
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 .section-title {
     color: #003c3c;
     font-weight: bold;
     margin-bottom: 10px;
+<<<<<<< HEAD
     font-size: 1.25rem; 
+=======
+    font-size: 1.25rem;
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 }
 
 .welcome-message {
     font-size: 1.5rem;
     color: #003c3c;
     padding: 13px 30px;
+<<<<<<< HEAD
     text-align: center; 
     background: linear-gradient(to right, #003c3c, #005f5f); 
+=======
+    text-align: center;
+    background: linear-gradient(to right, #003c3c, #005f5f);
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
     color: white;
     border-radius: 5px;
 }
@@ -48,7 +71,11 @@ span{
 
 .icon-section-title i {
     color: #003c3c;
+<<<<<<< HEAD
     font-size: 1.5rem; 
+=======
+    font-size: 1.5rem;
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 }
 
 .btn-custom {
@@ -71,8 +98,13 @@ span{
     border-radius: 5px;
     padding: 10px;
     text-align: center;
+<<<<<<< HEAD
     position: relative; 
     overflow: hidden; 
+=======
+    position: relative;
+    overflow: hidden;
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 }
 
 .event-calendar:after {
@@ -80,7 +112,11 @@ span{
     position: absolute;
     width: 100%;
     height: 10px;
+<<<<<<< HEAD
     background: #003c3c; 
+=======
+    background: #003c3c;
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
     bottom: 0;
     left: 0;
     transform: translateY(100%);
@@ -139,11 +175,15 @@ span{
     margin-right: 10px;
 }
 
+<<<<<<< HEAD
 @media (max-width: 768px) {
     .welcome-message {
         text-align: center;
     }
 }
+=======
+/* Calendar styles */
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 .fc-toolbar-title {
     display: block;
     text-align: center;
@@ -178,6 +218,7 @@ span{
     color: #000;
 }
 
+<<<<<<< HEAD
 .fc-toolbar-title {
     display: block;
     text-align: center;
@@ -185,6 +226,8 @@ span{
     font-size: 1rem;
 }
 
+=======
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
 .fc .fc-col-header-cell-cushion {
     color: #fff;
     text-decoration: none;
@@ -253,4 +296,14 @@ span{
 .fc .fc-daygrid-day-frame {
     border-bottom: 1px solid #fff;
     height: 100%;
+<<<<<<< HEAD
 }
+=======
+}
+
+@media (max-width: 768px) {
+    .welcome-message {
+        text-align: center;
+    }
+}
+>>>>>>> b98549f871d634fbb65dfc70871dacb2e76584c3
