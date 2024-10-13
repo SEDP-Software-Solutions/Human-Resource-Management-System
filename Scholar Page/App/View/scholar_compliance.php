@@ -8,11 +8,12 @@ include('../../Core/Includes/header.php');
 
     <div class="container" style="margin-top: 6rem;">
         <i class="fa-solid fa-angle-left" style="font-size: 20px; color: #003c3c; padding-bottom: 20px;
-"> Requirements Compliance</i>
-        
+"> <span style="font-family: 'Roboto', sans-serif; ">Requirements Compliance</span></i>
+
         <div class="d-flex align-items-center mb-4 shadow p-5 bg-body rounded">
             <div class="text-center me-4">
-                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i> <!-- Updated icon -->
+                <a href="./Scholar Compliance/narrativeReport.php">
+                    <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i> </a><!-- Updated icon -->
             </div>
             <div>
                 <h5 style="color: #343a40;">Narrative Reports</h5>
@@ -23,7 +24,7 @@ include('../../Core/Includes/header.php');
 
         <div class="d-flex align-items-center mb-4 shadow p-5 bg-body rounded">
             <div class="text-center me-4">
-                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i> 
+                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i>
             </div>
             <div>
                 <h5 style="color: #343a40;">Load Allowance</h5>
@@ -34,7 +35,7 @@ include('../../Core/Includes/header.php');
 
         <div class="d-flex align-items-center mb-4 shadow p-5 bg-body rounded">
             <div class="text-center me-4">
-                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i> 
+                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i>
             </div>
             <div>
                 <h5 style="color: #343a40;">Book Allowance</h5>
@@ -45,7 +46,7 @@ include('../../Core/Includes/header.php');
 
         <div class="d-flex align-items-center mb-4 shadow p-5 bg-body rounded">
             <div class="text-center me-4">
-                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i> 
+                <i class="fa-regular fa-folder" style="font-size: 140px; color: #003c3c;"></i>
             </div>
             <div>
                 <h5 style="color: #343a40;">Travel Allowance</h5>

@@ -53,8 +53,8 @@ include('./Database/login.php');
                             <h3 class="text-center font-weight-bold mb-5 pt-3" style="color: #003c3c;">Sign in</h3>
                             <form action="index.php" method="POST">
                                 <div class="form-group mb-5">
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    <label for="email">Email</label>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-container">
