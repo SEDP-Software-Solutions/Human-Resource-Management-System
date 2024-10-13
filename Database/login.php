@@ -7,31 +7,33 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
+    $email = $_POST["email"];  // Changed from username to email
     $password = $_POST["password"];
 
     // To store userType
     $userType = '';
 
     // Debugging: check received POST data
-    var_dump($username, $password);
+    var_dump($email, $password);
 
     // Function to perform case-sensitive search
-    function findUserType($pdo, $username, $password, $table)
+    function findUserType($pdo, $email, $password, $table)
     {
-        $stmt = $pdo->prepare("SELECT usertype FROM $table WHERE username = BINARY :username AND password = BINARY :password");
-        $stmt->execute(['username' => $username, 'password' => $password]);
+        // Updated query to use :email instead of :username
+        $stmt = $pdo->prepare("SELECT usertype FROM $table WHERE email = BINARY :email AND password = BINARY :password");
+        // Bind parameters correctly
+        $stmt->execute(['email' => $email, 'password' => $password]);
         return $stmt->fetchColumn();
     }
 
     // Check in scholar_login
-    $userType = findUserType($pdo, $username, $password, 'scholar_login');
+    $userType = findUserType($pdo, $email, $password, 'recipient');
     if (!$userType) {
         // Check in employee_login
-        $userType = findUserType($pdo, $username, $password, 'employee_login');
+        $userType = findUserType($pdo, $email, $password, 'employees');
         if (!$userType) {
             // Check in admin_login
-            $userType = findUserType($pdo, $username, $password, 'admin_login');
+            $userType = findUserType($pdo, $email, $password, 'admin_login');
         }
     }
 
@@ -39,28 +41,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     var_dump($userType);
 
     if ($userType) {
-        $_SESSION["username"] = $username;
+        $_SESSION["email"] = $email;  // Changed from username to email
 
         switch ($userType) {
             case "scholar":
-                $_SESSION['login_success'] = "Welcome $username!";
+                $_SESSION['login_success'] = "Welcome $email!";
                 $_SESSION['redirect_to'] = "./Scholar Page/App/View/scholar_home.php";
                 break;
 
             case "employee":
-                $_SESSION['login_success'] = "Welcome $username!";
+                $_SESSION['login_success'] = "Welcome $email!";
                 $_SESSION['redirect_to'] = "./Employee Page/App/View/employee_home.php";
                 break;
 
             case "admin":
-                $_SESSION['login_success'] = "Welcome $username!";
+                $_SESSION['login_success'] = "Welcome $email!";
                 $_SESSION['redirect_to'] = "./Admin Page/App/View/AdminDashboard.php";
                 break;
         }
         header("Location: ./index.php");
     } else {
-        $_SESSION['login_error'] = "Username or password incorrect";
+        $_SESSION['login_error'] = "Email or password incorrect";  // Updated error message
         header("Location: ./index.php");
     }
-    exit();
+    exit();  // Don't forget this line
 }
