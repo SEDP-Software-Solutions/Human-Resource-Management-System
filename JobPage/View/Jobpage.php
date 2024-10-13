@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="./Assets/Images/SEDPfavicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Assets/Images/SEDPfavicon.png" type="image/x-icon">
     <style>
         body {
             background-color: #f0f0f0;
@@ -36,12 +36,14 @@
 
     <div class="container bg-light my-2 shadow rounded">
         <div class="row">
-            <nav aria-label="breadcrumb" class="my-2">
+            <nav aria-label="breadcrumb" class="my-2 d-flex justify-content-between">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Job-Offers</li>
                 </ol>
+                <a href="JobApplicantStatus.php" class="text-decoration-none">Job Status</a>
             </nav>
+
             <div class="text-center pt-2">
                 <h1 class="fw-bold fs-3 fs-sm-5">Join Our Team and Shape the Future with Us!</h1>
                 <img src="../Assets/Images/hiring.webp" alt="Hiring Image" class="img-fluid rounded shadow my-4" style="height: auto; width: 700px;">
@@ -82,10 +84,11 @@
                                 <p class='card-text mx-2'><i class='bi bi-card-checklist'></i> Responsibilities: {$row['JobDescription']}</p>
                                 <p class='card-text mx-2'><i class='bi bi-clipboard-check'></i> Requirements: {$row['qualification']}</p>
                 
-                                <button type='button' class='btn btn-md text-white' style='background-color: #003c3c;' 
-                                    data-bs-toggle='modal' data-bs-target='#JobApplicant' onclick='setJobApplicant({$row['job_id']})'>
+                               <button type='button' class='btn btn-md text-white' style='background-color: #003c3c;' 
+                                    onclick=\"window.location.href='JobApplication.php?job_id={$row['job_id']}'\">
                                     Apply
                                 </button>
+
                                 <button type='button' class='btn btn-info btn-md' data-bs-toggle='modal' 
                                     data-bs-target='#$ViewJobId' onclick='setJobApplicant({$row['job_id']})'>
                                     View
@@ -99,7 +102,7 @@
                             <div class='modal-dialog modal-lg modal-dialog-centered'> <!-- Increased size of modal -->
                                 <div class='modal-content rounded'>
                                     <div class='modal-header'>
-                                        <h5 class='modal-title' id='viewApplicantLabel'>Applicant Information</h5>
+                                        <h5 class='modal-title' id='viewApplicantLabel'>Job Offer Information</h5>
                                         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                     </div>
                                     <div class='modal-body'>
@@ -138,7 +141,7 @@
                 ?>
             </div>
             <div class="d-flex justify-content-center my-3">
-                <a href="./SearchJob.php" class="btn btn-info">View More</a>
+                <a href="./AllJObOffers.php" class="btn btn-info">View All</a>
             </div>
         </div>
     </section>

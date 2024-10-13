@@ -38,8 +38,8 @@ include('./Database/login.php');
                 <div class="header">
                     <?php include('./Scholar Page/Core/Includes/svg.php'); ?>
                     <ul>
-                        <li><a href="./Scholar Page/App/ScholarshipCriteria.php">SCHOLARSHIP</a></li>
-                        <li><a href="./JobPage/Jobpage.php">JOB</a></li>
+                        <li><a href="./Scholar Page/models/ScholarCriteria/ScholarCriteria.php">SCHOLARSHIP</a></li>
+                        <li><a href="./JobApplicantPage/">JOB</a></li>
                         <li><a href="#">ABOUT</a></li>
                     </ul>
                 </div>

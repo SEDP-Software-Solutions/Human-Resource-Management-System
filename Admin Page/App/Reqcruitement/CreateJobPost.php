@@ -1,81 +1,90 @@
-<!-- Modal for Creating Job Post -->
-<div class="modal fade" id="CreateJobPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="CreateJobPostLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<!-- Create Job Post Modal -->
+<div class="modal fade" id="CreateJobPost" tabindex="-1" aria-labelledby="createJobPostLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="CreateJobPostLabel">Post Job</h5>
+                <h5 class="modal-title" id="createJobPostLabel">Create Job Offer</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="../Controller/JobOfferController.php?action=create" method="POST">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="jobId" class="form-label">Job Title</label>
+                            <select class="form-select" name="jobId" id="jobId" required onchange="updateFields(this)">
+                                <option value="" disabled selected>Select Job Title</option>
+                                <?php foreach ($jobSelects as $job): ?>
+                                    <option value="<?= $job['jobId'] ?>"
+                                        data-id="<?= htmlspecialchars($job['jobId']) ?>"
+                                        data-description="<?= htmlspecialchars($job['description']) ?>"
+                                        data-qualification="<?= htmlspecialchars($job['qualification']) ?>"
+                                        data-min-salary="<?= htmlspecialchars($job['minimumSalary']) ?>"
+                                        data-max-salary="<?= htmlspecialchars($job['maximumSalary']) ?>">
+                                        <?= htmlspecialchars($job['title']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-            <!-- Form for creating a new job post -->
-            <form method="post">
-                <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                        <div class="col-md-6 mb-3">
+                            <label for="JobDescription" class="form-label">Job Description</label>
+                            <textarea class="form-control" name="JobDescription" id="JobDescription" rows="3" required></textarea>
+                        </div>
 
-                    <!-- Job Title Input -->
-                    <div class="form-group mb-3">
-                        <label for="jobTitle" class="col-form-label">Job Title</label>
-                        <input required type="text" class="form-control" id="jobTitle" name="title" value="<?php echo htmlspecialchars($title); ?>">
-                    </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="qualification" class="form-label">Qualification</label>
+                            <input type="text" class="form-control" name="qualification" id="qualification" required>
+                        </div>
 
-                    <!-- Job Description Input -->
-                    <div class="form-group mb-3">
-                        <label for="jobDescription" class="col-form-label">Job Description</label>
-                        <textarea required class="form-control" id="jobDescription" name="JobDescription" rows="4"><?php echo htmlspecialchars($JobDescription); ?></textarea>
-                    </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="department<?= $row['jobOfferId'] ?>" class="form-label">Department Name</label>
+                            <select class="form-select" name="departmentName" id="department<?= $row['jobOfferId'] ?>" required onchange="updateDepartmentDetails(this)">
 
-                    <!-- Qualification Input -->
-                    <div class="form-group mb-3">
-                        <label for="qualification" class="col-form-label">Qualification</label>
-                        <textarea required class="form-control" id="qualification" name="qualification" rows="3"><?php echo htmlspecialchars($qualification); ?></textarea>
-                    </div>
+                                <option value="" disabled selected>Select Department</option>
+                                <?php foreach ($departmentSelects as $department): ?>
+                                    <option value="<?= $department['DepartmentName'] ?>"
+                                        data-id="<?= $department['departmentId'] ?>"
+                                        data-location="<?= $department['BranchLocation'] ?>"
+                                        <?= $department['DepartmentName'] == $row['DepartmentName'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($department['DepartmentName']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                    <!-- Location Dropdown (with no default selection) -->
-                    <div class="form-group mb-3">
-                        <label for="location" class="col-form-label">Location</label>
-                        <select required class="form-select" id="location" name="location">
-                            <option value="" disabled selected>Select</option> <!-- No pre-selected value -->
-                            <?php
-                            $sql = "SELECT * FROM branches";
-                            $result = $connection->query($sql);
+                        <input type="hidden" name="departmentId" id="departmentId">
 
-                            if ($result) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='{$row['name']}'>{$row['name']}</option>";
-                                }
-                            } else {
-                                echo "<option value=''>No branches available</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="min_salary" class="form-label">Minimum Salary</label>
+                            <input type="number" class="form-control" name="min_salary" id="min_salary" required>
+                        </div>
 
-                    <!-- Salary Range Inputs (Min and Max Salary) -->
-                    <div class="form-group mb-3">
-                        <label class="col-form-label">Salary Range</label>
-                        <div class="d-flex align-items-center">
-                            <input required type="number" class="form-control" name="min_salary" placeholder="Min" value="<?php echo htmlspecialchars($min_salary); ?>" min="0" max="500000">
-                            <span class="mx-2">-</span>
-                            <input required type="number" class="form-control" name="max_salary" placeholder="Max" value="<?php echo htmlspecialchars($max_salary); ?>" min="0" max="500000">
+                        <div class="col-md-6 mb-3">
+                            <label for="location<?= $row['jobOfferId'] ?>" class="form-label">Location</label>
+                            <input type="text" class="form-control" name="location" id="location<?= $row['jobOfferId'] ?>" value="<?= htmlspecialchars($row['location']) ?>" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="max_salary" class="form-label">Maximum Salary</label>
+                            <input type="number" class="form-control" name="max_salary" id="max_salary" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="EmployeeType" class="form-label">Employee Type</label>
+                            <select class="form-select" name="EmployeeType" id="EmployeeType" required>
+                                <option value="" disabled>Select Employee Type</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Intern">Intern</option>
+                                <option value="Freelance">Freelance</option>
+                            </select>
                         </div>
                     </div>
-
-                    <!-- Employee Type Dropdown (with no default selection) -->
-                    <div class="form-group mb-3">
-                        <label for="employeeType" class="col-form-label">Employee Type</label>
-                        <select required class="form-select" id="employeeType" name="EmployeeType">
-                            <option value="" disabled selected>Select Type</option> <!-- No pre-selected value -->
-                            <option value="PartTime" <?php echo ($EmployeeType == 'PartTime') ? 'selected' : ''; ?>>Part-time</option>
-                            <option value="FullTime" <?php echo ($EmployeeType == 'FullTime') ? 'selected' : ''; ?>>Full-time</option>
-                            <option value="Freelance" <?php echo ($EmployeeType == 'Freelance') ? 'selected' : ''; ?>>Freelance</option>
-                        </select>
-                    </div>
-
                 </div>
-
-                <!-- Modal Footer Buttons -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Post</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create Job Offer</button>
                 </div>
             </form>
         </div>

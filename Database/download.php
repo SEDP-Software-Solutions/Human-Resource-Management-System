@@ -1,0 +1,19 @@
+
+<?php
+$fileName = isset($_GET['file']) ? basename($_GET['file']) : null;
+$filePath = __DIR__ . "/../../../Database/includes/" . $fileName;
+
+if ($fileName && file_exists($filePath)) {
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($filePath));
+    readfile($filePath);
+    exit;
+} else {
+    echo "File not found.";
+}
+?>

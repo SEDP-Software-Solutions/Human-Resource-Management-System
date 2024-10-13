@@ -36,8 +36,16 @@
     <!-- Job Listings -->
     <section>
         <div class="container mb-5 mt-2 bg-light">
-            <!-- Search Bar and Filter Dropdown -->
+
             <div class="col mt-3 p-4">
+                <nav aria-label="breadcrumb" class="my-2">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Job Lists</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">All Jobs Lists</li>
+                    </ol>
+                </nav>
+                <!-- Search Bar and Filter Dropdown -->
                 <form method="GET" action="">
                     <div class="row g-3">
                         <!-- Dropdown for sorting filter -->
